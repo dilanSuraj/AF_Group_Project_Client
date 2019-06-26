@@ -63,7 +63,7 @@ export default class StudentLogin extends Component {
                     title: "Succesfull",
                     text: "Succesfully logged In",
                     type: "success",
-                    timer: 1000,
+                    timer: 5000,
                     showConfirmButton: true
                 });
                 this.props.history.push(`/`);
@@ -76,10 +76,10 @@ export default class StudentLogin extends Component {
                     title: "Error",
                     text: "Login Unsuccesful!",
                     type: "error",
-                    timer: 1000,
+                    timer: 5000,
                     showConfirmButton: true
                 });
-                this.props.history.push(`/login`);
+                this.props.history.push(`/student/login`);
 
             }
 

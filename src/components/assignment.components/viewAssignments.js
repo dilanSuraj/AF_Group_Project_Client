@@ -9,9 +9,10 @@ const AssignmentTable = props => (
         <td>{props.exam.typeOfExam}</td>
         <td>{props.exam.marks}</td>
         <td>{props.exam.deadlineDate}</td>
-        <td>
+        {localStorage.getItem('role') === 'INSTRUCTOR' ?<td>
             <Link to={"/assignment/update/"+props.exam.assignmentExamCode}>Update</Link>
-        </td>
+        </td>:null }
+
     </tr>
 
 );
@@ -53,6 +54,7 @@ export default class CourseList extends Component{
                         <th>Type</th>
                         <th>Marks</th>
                         <th>Deadline</th>
+                        <th>Update</th>
                     </tr>
                     </thead>
                     <tbody>

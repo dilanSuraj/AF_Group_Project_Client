@@ -51,6 +51,8 @@ export default class createCourse extends  Component{
             isCourseAccepted:false
         };
 
+        console.log(newCourse);
+
         axios.post('http://localhost:4000/api/courses/', newCourse)
             .then(res => console.log(res.data)).catch((err)=>{
                 alert("Course Creation Unsuccessful");

@@ -56,6 +56,7 @@ export default class SuperUserSignup extends Component {
     };
 
     onChangeRole = (e) => {
+        console.log(e.target.value);
         this.setState({
 
             role: e.target.value
@@ -83,6 +84,7 @@ export default class SuperUserSignup extends Component {
 
         if (this.state.name == '' || this.state.email == '' || this.state.password == '' || this.state.cPassword == '' || this.state.role == '' || this.state.JoinedDate == '' || this.state.qualifications == '') {
             alert("Please fill the fields");
+            console.log(this.state);
             return;
         }
 
@@ -125,7 +127,7 @@ export default class SuperUserSignup extends Component {
                         timer: 1000,
                         showConfirmButton: false
                     }, function () {
-                       this.props.history.push('/');
+                       this.props.history.push('/superuser/login');
                     });
                 }
 
@@ -147,7 +149,7 @@ export default class SuperUserSignup extends Component {
         return (
             <div className="container shadow-lg p-3 mb-5 bg-white rounded" style={{ marginTop: 120 }}>
                 <Form>
-                    <h3> Sign Up</h3>
+                    <h3> Sign up Super User</h3>
                     <Form.Group>
                         <Form.Label>User Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter user name" value={this.state.name} onChange={this.onChangeName} />
@@ -173,23 +175,19 @@ export default class SuperUserSignup extends Component {
                             name="subject"
                             className="form-control"
                             onChange={this.onChangeRole}
-                            value={this.state.role}
-                        >
-                            {
-                                this.state.roleList.map(role => {
-                                    return (
-                                        <option key={role} value={role}>{role}</option>
-                                    )
-                                })
-                            }> </select>
+                            value={this.state.role}>
+                            <option  value="ADMIN">ADMIN</option>
+                            <option  value="INSTRUCTOR">INSTRUCTOR</option>
+                        </select>
+
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Joined Date</Form.Label>
-                        <Form.Control type="text" placeholder="Enter mobile number" value={this.state.JoinedDate} onChange={this.onChangeJoinedDate()} />
+                        <Form.Control type="text" placeholder="Enter Joined Date" value={this.state.JoinedDate} onChange={this.onChangeJoinedDate} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Qualifications</Form.Label>
-                        <Form.Control type="text" placeholder="Enter NIC Number" value={this.state.qualifications} onChange={this.onChangeQualifications} />
+                        <Form.Control type="text" placeholder="Enter Qualificationsr" value={this.state.qualifications} onChange={this.onChangeQualifications} />
                     </Form.Group>
                     <Button variant="primary" type="button" onClick={this.signup}>
                         SignUp

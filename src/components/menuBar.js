@@ -10,6 +10,20 @@ import {
 } from 'reactstrap';
 import studentPortalLogo from '../assets/img/studentPortalImgs.png';
 
+
+const StudentMenu = () =>{
+   return(
+    <Navbar>
+        <div>
+            <NavItem className="ml-auto">
+                <NavLink href="/assignment/viewall">
+
+                    <h4><i className="fas fa-graduation-cap"/><b>View Assignments and Exams</b></h4>
+                </NavLink>
+            </NavItem>
+        </div>
+    </Navbar>);
+};
 const AdminMenu = () =>{
     return(
         <Navbar color="light" light expand="md">
@@ -26,7 +40,7 @@ const AdminMenu = () =>{
 
         <div>
             <NavItem className="ml-auto">
-                <NavLink href="/students/add">
+                <NavLink href="/student/signup">
 
                     <h4><i className="fas fa-home"/><b>Add Students</b></h4>
                 </NavLink>
@@ -35,7 +49,7 @@ const AdminMenu = () =>{
 
         <div>
             <NavItem className="ml-auto">
-                <NavLink href="/superusers/add">
+                <NavLink href="/superuser/add">
 
                     <h4><i className="fas fa-home"/><b>Add Super Users</b></h4>
                 </NavLink>
@@ -105,7 +119,7 @@ export default class MenuBar extends React.Component {
             isAuthenticated: false
         };
         let email = localStorage.getItem('email');
-        if (email != '') {
+        if (email !== '' || email !== null) {
             this.state.isAuthenticated = false;
         }
         else{
@@ -161,13 +175,21 @@ export default class MenuBar extends React.Component {
                                 </NavLink>
                             </NavItem>
                         </div>
-                    {localStorage.getItem('role').localeCompare('INSTRUCTOR') === 0 ? <InstructorMenu/> : (localStorage.getItem('role').localeCompare('ADMIN') === 0 ? <AdminMenu/>:null)}
+                    {localStorage.getItem('role').localeCompare('INSTRUCTOR') === 0 ? <InstructorMenu/> : (localStorage.getItem('role').localeCompare('ADMIN') === 0 ? <AdminMenu/>:(localStorage.getItem('role').localeCompare('STUDENT') === 0 ?<StudentMenu/>:null))};
 
 
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            {this.state.isAuthenticated != null?
+                            { localStorage.getItem( 'email').localeCompare(null) !== 0?
 
+                                <div>
+                                    <NavItem>
+                                        <NavLink onClick={this.logout}><h4>Hi Instructor 01 <span/><b>Log out</b>  <i className="fas fa-sign-out-alt"></i></h4>
+
+                                        </NavLink>
+                                    </NavItem>
+                                </div>
+                                :
                                 <div>
                                     <Nav className="ml-auto" navbar>
                                         <NavItem className="ml-auto">
@@ -181,19 +203,6 @@ export default class MenuBar extends React.Component {
                                             </NavLink>
                                         </NavItem></Nav>
                                 </div>
-                                :
-                                <div>
-                                    <NavItem>
-                                        <NavLink onClick={this.logout}><h4>Hi <b>Log out</b>  <i className="fas fa-sign-out-alt"></i></h4>
-
-                                        </NavLink>
-                                    </NavItem>
-                                </div>
-
-
-
-
-
                             }
 
                         </Nav>

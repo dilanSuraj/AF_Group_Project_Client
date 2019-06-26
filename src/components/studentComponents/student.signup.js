@@ -141,7 +141,7 @@ export  default class StudentSignup extends Component {
                     title: "Email Error!!",
                     text: "Email Already exists",
                     type: "error",
-                    timer: 1000,
+                    timer: 5000,
                     showConfirmButton: true
                 }, function(){
                     console.log('home');
@@ -154,10 +154,10 @@ export  default class StudentSignup extends Component {
                             title: "Success!",
                             text: "Successfully sign up",
                             type: "success",
-                            timer: 1000,
+                            timer: 5000,
                             showConfirmButton: false
                         }, function () {
-                            this.props.history.push('/');
+                            this.props.history.push('/student/login');
                         });
                     }
 
@@ -179,7 +179,7 @@ export  default class StudentSignup extends Component {
         return (
             <div className="container shadow-lg p-3 mb-5 bg-white rounded" style={{ marginTop: 120 }}>
                 <Form>
-                    <h3> Sign Up</h3>
+                    <h3> Add Student</h3>
                     <Form.Group>
                         <Form.Label>Student Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter user name" value={this.state.name} onChange={this.onChangeName} />

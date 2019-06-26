@@ -76,7 +76,7 @@ export default class SuperUserLogin extends Component {
                     timer: 1000,
                     showConfirmButton: true
                 });
-                this.props.history.push(`/login`);
+                this.props.history.push(`superuser/login`);
 
             }
 
